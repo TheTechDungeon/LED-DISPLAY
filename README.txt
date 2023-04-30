@@ -16,15 +16,21 @@
 // source code, as well as condiditions under which the rights are given to you
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-This is our 16x16 RGB LED project. We will be selling these on our website, etsy page, and at
-Retro shows.
+This is sample code for our 16x16 RGB LED project. We will be selling these on our website, 
+etsy page, and at Retro shows.
 
-The display comes pre-programmed with tons of retro sprites in static and animated forms. You
-can take this code and make your own sprite display if you are so inclined.
+The display comes pre-programmed with tons of sprites in static and animated forms. The
+code for that binary is not being released as it has our custom art and effects that we use
+in the product we sell.
+
+However, you can take this code and make your own sprites for the display if you are so
+inclined.  The code will show you the basics of getting the display enumarated and displaying
+16x16 sprites on it. 
 
 On our website www.techdungeon.xyz you can find our latest binary we have released 
 for the display.  You can use this to restore your display back to the "factory" settings you
-got it from us. This is useful if you play around with it and want to restore it.
+got it from us. This is useful if you play around with your own code and want to restore 
+the display back to our binary. 
 
 Any new updates to the code will be released here and new binaries with new art from us will
 always be availble to people who have the display for free on our website. Be aware
