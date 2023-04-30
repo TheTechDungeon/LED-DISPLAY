@@ -60,12 +60,13 @@ to 16x16 and you can drag the file in this archive named led-display-pallete.gpl
 sprite editor to load a palette that matches the order and color in the code.
 
 You can export your sprite in Piskel to a C file and then you can replace the RGB values
-with the proper single byte index for that color as noted in our C source.  Be sure to 
-set the color format in preferences to hex so it outputs the sprite as a hex array.
+with the proper single byte index for that color as noted by the order in our C source.
+Be sure to set the color format in piskel preferences to hex so it outputs the sprite 
+as a C hex array.
 
-After converting the array to a 256 byte array you can place it into the sprites.h file
-and reference it in the spriteslist array.  You can then compile it and download your
-binary to the display.
+After converting the array to a 256 single byte array you can place it into the 
+sprites.h file and reference it in the spriteslist array.  You can then compile it and
+download your binary to the display.
 
 PLEASE DO NOT MODIFY THE CURRENT LIMIT SET IN THE CODE. YOU COULD DAMAGE YOUR DISPLAY
 OR PC/USB PORT!!!!!  You run your own code at your own risk.
