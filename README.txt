@@ -54,3 +54,26 @@ current limits imposed in the code, and do NOT modify them!
 
 The code for this project is kept as simple as possible. Many people I talked to want to hack
 around with art, but are new to the C language. So I have kept things as simple as possible.
+
+For creating images I recommend the website https://www.piskelapp.com/ . Resize the canvas
+to 16x16 and you can drag the file in this archive named led-display-pallete.gpl onto the 
+sprite editor to load a palette that matches the order and color in the code.
+
+You can export your sprite in Piskel to a C file and then you can replace the RGB values
+with the proper single byte index for that color as noted in our C source.  Be sure to 
+set the color format in preferences to hex so it outputs the sprite as a hex array.
+
+After converting the array to a 256 byte array you can place it into the sprites.h file
+and reference it in the spriteslist array.  You can then compile it and download your
+binary to the display.
+
+PLEASE DO NOT MODIFY THE CURRENT LIMIT SET IN THE CODE. YOU COULD DAMAGE YOUR DISPLAY
+OR PC/USB PORT!!!!!  You run your own code at your own risk.
+
+To build the code you will need.
+
+1) Arduino IDE or Visual Studio Code
+2) ESP8266 Support added to the above
+3) The FastLED library added also
+
+I will try to clarify these steps if people need the help.
