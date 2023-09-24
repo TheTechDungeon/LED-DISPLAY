@@ -22,7 +22,7 @@
 #include "sprites.h"
 
 int gifPlaying;
-int gifPlayingStartMillis;
+int gifFrameMillis;
 int gifPlayingDelay;
 uint8_t showed_image = 0;
 WiFiManager wifiManager;
@@ -155,8 +155,8 @@ void loop() {
     }
 
     if (gifPlaying) {
-      if (millis() - gifPlayingStartMillis > gifPlayingDelay) {
-        gifPlayingStartMillis = millis();
+      if (millis() - gifFrameMillis > gifPlayingDelay) {
+        gifFrameMillis = millis();
         int frameStatus = gifPlayFrame(&gifPlayingDelay);
         if (1 != frameStatus) {
           if (millis() - fileMillis > 5000) {
@@ -186,8 +186,22 @@ void loop() {
     FastLED.show();
   }
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////////
-// WifiManager: Asking to be added to Wifi
+// Play a gif file 
+//////////////////////////////////////////////////////////////////////////////////////////////
+void setupAndPlayGif(const char *filename) {
+    if (gifPlaying) {
+      gifPlayEnd();
+    }
+    gifPlayBegin(filename);
+    gifFrameMillis = millis();
+    fileMillis = millis();
+    gifPlayingDelay = 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Select and play next gif
 //////////////////////////////////////////////////////////////////////////////////////////////
 void selectNextGif(void) {
   bool ready = true;
@@ -201,13 +215,8 @@ void selectNextGif(void) {
     showed_image = 0;
   }
   if (ready) {
-    if (gifPlaying) {
-      gifPlayEnd();
-    }
     if (rootDirectory.fileName().endsWith(".gif")) {
-      gifPlayBegin(rootDirectory.fileName().c_str());
-      gifPlayingStartMillis = millis();
-      gifPlayingDelay = 0;
+      setupAndPlayGif(rootDirectory.fileName().c_str());
       showed_image = 1;
     } else {
       Serial.printf("Skipping: %s\r\n", rootDirectory.fileName().c_str());
@@ -325,6 +334,9 @@ bool handleFileRead(String path){
     File file = LittleFS.open(decoded_url, "r");
     size_t sent = webServer.streamFile(file, contentType);
     file.close();
+    if(!webServer.hasArg("download")) {
+      setupAndPlayGif(decoded_url.c_str());
+    }
     return true;
   }
   return false;
